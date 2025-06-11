@@ -31,6 +31,13 @@ export default function Deptals() {
     }
 
     const calculate = () => {
+        const emptyFields = subjects.some(s => s.grade.trim() === "" || s.units.trim() === '')
+          if(emptyFields || deptalsGrade.trim() === "") {
+            setResult('')
+            alert("Please fill in all grades, units, and deptals to calculate.")
+            return
+          }
+
         const computed = subjects.map(s => ({
             grade: parseFloat(s.grade),
             units: parseFloat(s.units),
@@ -51,7 +58,7 @@ export default function Deptals() {
           deptals: deptalsPart.toFixed(3),
           final: finalResult.toFixed(3),
           passed: finalResult <= 2 ? "PASSED" : "FAILED",
-          message: finalResult <= 2 ? "CONGRATS PASADO KA TOL!" : "ANG BUHAY AY 'DI KARERA",
+          message: finalResult <= 2 ? "CONGRATS, PASADO KA TOL!" : "ANG BUHAY AY 'DI KARERA",
         });
     }
 
@@ -117,7 +124,7 @@ export default function Deptals() {
 
             <input
               type="number"
-              step="0.01"
+              step="1"
               placeholder="Deptals Grade"
               value={deptalsGrade}
               onChange={(e) => setDeptalsGrade(e.target.value)}
@@ -159,7 +166,7 @@ export default function Deptals() {
                 {result.passed}
               </span>
             </p>
-            <p className="flex flex-col mt-4 ml-2">
+              <p className="flex flex-col mt-4 ml-2">
               Message:
               <span
                 className={`border p-4 rounded border-gray-200 shadow-md my-2 font-bold ${
