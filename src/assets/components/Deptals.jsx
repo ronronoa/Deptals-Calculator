@@ -76,7 +76,7 @@ export default function Deptals() {
               <>
                 <div key={index} className="flex gap-2">
                   <input
-                    type="text"
+                    type="number"
                     step="1"
                     placeholder="Grade"
                     value={subject.grade}
