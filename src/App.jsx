@@ -1,14 +1,20 @@
-import { useState } from 'react'
+
+
 import Deptals from './assets/components/Deptals'
+import Footer from './assets/components/Footer'
 import Navbar from './assets/components/Navbar'
+
 
 function App() {
 
   return (
-      <div className="">
+      <>
+        <div className="">
         <Navbar />
-        <Deptals />
+        <Deptals /> 
+        <Footer />
       </div>
+      </>
   )
 }
 

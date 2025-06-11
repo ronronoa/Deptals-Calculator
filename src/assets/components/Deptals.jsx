@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
 import { useState } from 'react'
 import {Trash2} from 'lucide-react'
+import { motion } from 'motion/react'
 
 export default function Deptals() {
     const [subjects, setSubjects] = useState([
@@ -49,16 +51,25 @@ export default function Deptals() {
           deptals: deptalsPart.toFixed(3),
           final: finalResult.toFixed(3),
           passed: finalResult <= 2 ? "PASSED" : "FAILED",
-          message: finalResult <= 2 ? "CONGRATS PASADO KA TOL!" : "ANG BUHAY AY 'DI KARERA"
+          message: finalResult <= 2 ? "CONGRATS PASADO KA TOL!" : "ANG BUHAY AY 'DI KARERA",
         });
     }
 
   return (
     <>
-      <div className="max-w-4xl mx-auto md:mt-32 p-6">
-        <h1 className="font-bold text-xl text-center mb-4">
-          DEPTALS CALCULATOR FOR PSYCH
-        </h1>
+    <motion.div 
+    className="min-h-screen"
+    initial={{opacity: 0, y: 20}}
+    animate={{opacity: 1, y: 0}}
+    transition={{duration: 1}}
+    >
+      <div className="max-w-4xl mx-auto p-6">
+        <div className="text-center mb-8 sm:mb-12">
+          <h1 className="font-extrabold text-5xl mb-2 md:mt-4">
+            Deptals Calculator
+          </h1>
+          <p className=''>Your go-to tool for fast and accurate grade calculations.</p>
+        </div>
         <div className="flex flex-col md:flex-row gap-6 p-6 max-w-3xl mx-auto border shadow-md border-gray-200">
           <div className="w-full md:w-1/2 space-y-4">
             {subjects.map((subject, index) => (
@@ -177,6 +188,7 @@ export default function Deptals() {
           </p>
         </div>
       </div>
+      </motion.div>
     </>
   );
 }
