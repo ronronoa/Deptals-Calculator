@@ -34,7 +34,7 @@ export default function Deptals() {
         const emptyFields = subjects.some(s => s.grade.trim() === "" || s.units.trim() === '')
           if(emptyFields || deptalsGrade.trim() === "") {
             setResult('')
-            alert("Please fill in all grades, units, and deptals to")
+            alert("Please fill in all grades, units, and deptals to calculate.")
             return
           }
 
