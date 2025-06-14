@@ -10,7 +10,7 @@ export default function Footer() {
         <p>If you have any question or suggestion.</p>
         </div>
 
-        <div className="flex items-center justify-center mt-2 gap-2">
+        <div className="flex items-center justify-center gap-2">
         <a href="https://www.facebook.com/maron.fajardo.9" target='_blank'>
         <Facebook size={25} className='text-black'/>
         </a>
