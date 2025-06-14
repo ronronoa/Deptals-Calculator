@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import logo from '/public/images/Psyculator.png'
@@ -42,3 +43,4 @@ export default function Navbar() {
         </motion.nav>
   )
 }
+
