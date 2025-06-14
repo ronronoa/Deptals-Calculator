@@ -9,6 +9,18 @@ function App() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    const handleContextMenu = (e) => {
+      e.preventDefault()
+    }
+
+    document.addEventListener('contextmenu', handleContextMenu)
+
+    return () => {
+      document.removeEventListener('contextmenu', handleContextMenu)
+    }
+  }, [])
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false)
     }, 2500)

@@ -2,7 +2,7 @@
 import React from 'react'
 import { useState } from 'react'
 import {Trash2} from 'lucide-react'
-import { motion } from 'motion/react'
+import { AnimatePresence, motion } from 'motion/react'
 
 export default function Deptals() {
     const [subjects, setSubjects] = useState([
@@ -14,6 +14,7 @@ export default function Deptals() {
 
     const [deptalsGrade, setDeptalsGrade] = useState("")
     const [result, setResult] = useState("")
+    const [hasError, setHasError] = useState(false)
 
     const handleSubjectChange = (index, field, value) => {
         const newSubjects = [...subjects];
@@ -30,12 +31,20 @@ export default function Deptals() {
         setSubjects(updatedSubjects)
     }
 
+    const clearInput = () => {
+      const clearSubject = subjects.map(() => ({grade: "", units: ""}))
+      setSubjects(clearSubject)
+      setResult('')
+      setDeptalsGrade('')
+    }
+ 
     const calculate = () => {
         const emptyFields = subjects.some(s => s.grade.trim() === "" || s.units.trim() === '')
           if(emptyFields || deptalsGrade.trim() === "") {
             setResult('')
-            alert("Please fill in all grades, units, and deptals to calculate.")
-            return
+            setHasError(true)
+            return () => 
+              setHasError(false)
           }
 
         const computed = subjects.map(s => ({
@@ -68,7 +77,7 @@ export default function Deptals() {
     className="min-h-screen"
     initial={{opacity: 0, y: 20}}
     animate={{opacity: 1, y: 0}}
-    transition={{duration: 1}}
+    transition={{duration: 0.5, delay: 0.5}}
     >
       <div className="max-w-4xl mx-auto p-6">
         <div className="text-center mb-8 sm:mb-12">
@@ -77,7 +86,27 @@ export default function Deptals() {
           </h1>
           <p className=''>Your go-to tool for fast and accurate grade calculations.</p>
         </div>
-        <div className="flex flex-col md:flex-row gap-6 p-6 max-w-3xl mx-auto border shadow-md border-gray-200">
+        <div className="flex flex-col md:flex-row gap-6 p-6 max-w-3xl mx-auto border shadow-md border-gray-200 relative">
+        {hasError && (
+          <AnimatePresence>
+          <motion.div 
+          className="absolute flex flex-col top-10 md:top-5 left-1/2 -translate-1/2 mt-4 bg-red-500 border border-gray-200 text-white shadow-md px-4 sm:px-4 py-2 rounded-md z-50"
+          initial={{opacity: 0, y: -20}}
+          animate={{opacity: 1, y: 0}}
+          transition={{duration: 0.3}}
+          >
+            <strong className='relative'>Error:</strong>
+            <span className="">Please fill in all field.</span>
+            <motion.button 
+            className="px-2 py-1 bg-black rounded-md text-white cursor-pointer text-sm absolute right-3"
+            onClick={() => setHasError(false)}
+            whileTap={{ y: 1}}
+            >
+              X
+            </motion.button>
+          </motion.div>
+          </AnimatePresence>
+        )}
           <div className="w-full md:w-1/2 space-y-4">
             {subjects.map((subject, index) => (
               <>
@@ -115,12 +144,21 @@ export default function Deptals() {
                 </div>
               </>
             ))}
+            <div className="flex items-center justify-between sm:pr-4 md:pr-15 md:px-4">
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer"
               onClick={addSubject}
             >
               + Add Subject
             </button>
+
+            <button
+              className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer"
+              onClick={clearInput}
+            >
+              - Clear
+            </button>
+            </div>
 
             <input
               type="number"
