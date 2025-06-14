@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import { useState } from 'react'
-import {Trash2} from 'lucide-react'
+import {Trash2, RotateCcw } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
 
 export default function Deptals() {
@@ -153,10 +153,10 @@ export default function Deptals() {
             </button>
 
             <button
-              className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer"
+              className="flex items-center gap-2 bg-red-500 text-white px-4 py-2 rounded cursor-pointer"
               onClick={clearInput}
             >
-              - Clear
+              <RotateCcw size={20}/>  Reset
             </button>
             </div>
 
