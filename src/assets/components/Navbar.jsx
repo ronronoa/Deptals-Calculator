@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react'
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import logo from '/public/images/Psyculator.png'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'motion/react';
 
@@ -19,7 +18,6 @@ export default function Navbar() {
         transition={{duration: 1}}
         >
             <div className="flex items-center">
-            <img src={logo} alt="" width={30}/>
             <h1 className='text-xl font-extrabold'>
                 Psyculator
             </h1>
