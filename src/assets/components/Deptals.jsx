@@ -215,7 +215,7 @@ export default function Deptals() {
               <p className="flex flex-col mt-4 ml-2">
                 Message:
                 <span
-                  className={`border p-4 rounded border-gray-200 shadow-md my-2 font-bold flex items-center ${
+                  className={`border p-4 rounded border-gray-200 shadow-md my-2 font-bold flex flex-col items-center ${
                     result.passed === "PASSED"
                       ? "text-green-700"
                       : "text-red-500"
@@ -225,7 +225,7 @@ export default function Deptals() {
                   {result.passed === "PASSED" ? (
                     <img
                       src="/images/happycat.gif"
-                      className="w-10 h-10"
+                      className="md:w-64 md:h-64 w-32"
                     ></img>
                   ) : (
                     ""
@@ -233,7 +233,7 @@ export default function Deptals() {
                   {result.passed === "FAILED" ? (
                     <img
                       src="/images/cryingcat.gif"
-                      className="w-10 h-10"
+                      className="md:w-64 md:h-64 w-32"
                     ></img>
                   ) : (
                     ""
